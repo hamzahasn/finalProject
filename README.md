@@ -1,4 +1,4 @@
-# WebApp boilerplate with React JS
+# WebApp boilerplate with React JS #test
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/4GeeksAcademy/react-hello-webapp.git)
 
 <p align="center">
@@ -10,7 +10,7 @@
 - Make sure you are using node version 10
 
 1. Install the packages: 
-#HAMZHASNAIN
+#HAMZALACSON
 ```
 $ npm install
 ```
