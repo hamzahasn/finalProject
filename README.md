@@ -10,7 +10,7 @@
 - Make sure you are using node version 10
 
 1. Install the packages: 
-#HAMZA
+#HAMZHASNAIN
 ```
 $ npm install
 ```
