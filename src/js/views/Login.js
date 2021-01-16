@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Form } from "react-bootstrap";
 import { Button } from "react-bootstrap";
+import "../../styles/index.scss";
 
 export const Login = props => {
 	const [email, setEmail] = useState("");
