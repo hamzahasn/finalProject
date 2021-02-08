@@ -1,3 +1,89 @@
 /* 
     General Styles
 */
+@import "~bootstrap/scss/bootstrap.scss";
+
+/* 
+    You can write your own styles here...
+    
+    
+    ...Or you can use the import command to include 
+    other sylesheets into your bunde as well, e.j:
+    
+    import 'relative/path/to/stylesheet.scss';
+*/
+body {
+        // font-family: 'Bangers', cursive;
+        // font-size: 18px;
+}
+.btn {
+    background-color: #f08080;
+    color: white;
+    border: none;
+    font-family: 'Bangers';
+    font-size: 20px;
+}
+.btn:hover {
+  background-color: #f08080; 
+  color: white;
+}
+
+.goku {
+    padding-right: 15px;
+    
+}
+.navbar-brand {
+    padding-left: 5px;
+    font-size: 30px;
+    font-family: 'Bangers', cursive;
+}
+
+.jumbotron {
+    background-color:white;
+    width: 100%;
+}
+
+.navbar {
+
+background: rgb(232,55,55);
+background: linear-gradient(90deg, rgba(232,55,55,1) 0%, rgba(240,128,128,1) 100%);
+}
+a:hover {
+  background-color: red;
+}
+.page-footer{
+ background: rgb(232,55,55);
+background: linear-gradient(90deg, rgba(232,55,55,1) 0%, rgba(240,128,128,1) 100%);
+  position: absolute;
+width: 100%;
+font-family: 'Bangers', cursive;
+
+}
+.flex-center {
+    display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-title {
+    font-family: 'Bangers', cursive;
+    font-size: 25px;
+}
+.card-text {
+    height: 150px;
+    // padding-bottom: 40px;
+}
+.cardimgs {
+    height: 300px;
+}
+.footerbtn {
+    color: black;
+}
+.heading {
+    font-family: 'Bangers', cursive;
+}
+
+
+
+// .cardsbtn {
+//     color:white !important;
+// }

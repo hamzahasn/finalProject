@@ -1,26 +1,44 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-export const Navbar = () => {
+const Navbar = props => {
+	const buildMenu = props.menu.map((item, index) => {
+		return (
+			<li key={index} className="nav-item">
+				<a className="nav-link" href={item.url}>
+					{item.label}
+				</a>
+			</li>
+		);
+	});
 	return (
-		<nav className="navbar navbar-light bg-success mb-3">
-			<Link to="/">
-				<span className="navbar-brand mb-0 h1">Name/Logo</span>
-			</Link>
-			<div className="ml-auto">
-				<Link to="/">
-					<span className="navbar-brand mb-0 h1">Help</span>
-				</Link>
-				<Link to="/demo">
-					<span className="navbar-brand mb-0 h1">Settings</span>
-				</Link>
-				<Link to="/login">
-					<span className="navbar-brand mb-0 h1">Log in</span>
-				</Link>
-				<Link to="/signup">
-					<span className="navbar-brand mb-0 h1">Sign Up</span>
-				</Link>
+		<nav className="navbar navbar-expand-lg navbar-dark bg-warning position-absolute fixed-top ">
+			<img src={props.icon} />
+
+			<a className="navbar-brand" href="#">
+				{props.brand}
+			</a>
+			<button
+				className="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarNav"
+				aria-controls="navbarNav"
+				aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span className="navbar-toggler-icon" />
+			</button>
+			<div className="collapse navbar-collapse" id="navbarNav">
+				<ul className="navbar-nav">{buildMenu}</ul>
 			</div>
 		</nav>
 	);
 };
+
+Navbar.propTypes = {
+	menu: PropTypes.array,
+	brand: PropTypes.string,
+	icon: PropTypes.string
+};
+
+export default Navbar;
