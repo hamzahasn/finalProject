@@ -3,6 +3,8 @@ import "../../styles/home.scss";
 import Jumbo from "../component/jumbo";
 import Card from "../component/card";
 import Search from "../component/search";
+import Testimonial from "../component/testimonial";
+import Columns from "../component/columns";
 
 export const Home = () => {
 	const carddata = [
@@ -53,6 +55,8 @@ Take control of your goals. Track calories, break down ingredients, and log acti
 				jumboit="Start for Free"
 			/>
 			<Search />
+			<Columns />
+			<Testimonial />
 			<div className="container-fluid">
 				<div className="row">
 					{carddata.map((item, index) => {
