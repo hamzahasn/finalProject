@@ -32,7 +32,7 @@ const Layout = () => {
 
 					<Switch>
 						<Route exact path="/">
-							<Login />
+							<Home />
 						</Route>
 						<Route exact path="/demo">
 							<Demo />

@@ -17,20 +17,23 @@ export const Signup = () => {
 	const handleSubmit = async e => {
 		e.preventDefault();
 		// check that password and confirmPassword Match, and that terms is not false
+		if (terms == true && password == confirmPassword) {
+			// if they match, call action in flux to send all state variables to the backend api for signup
+			let data = {
+				first_name: fName,
+				last_name: lName,
+				email: email,
+				password: password,
+				terms_accepted: terms
+			};
 
-		// if they match, call action in flux to send all state variables to the backend api for signup
-		let data = {
-			first_name: fName,
-			last_name: lName,
-			email: email,
-			password: password,
-			terms_accepted: terms
-		};
-
-		let signup = await actions.signupUser(data);
-		// wait for response. If successful, we send them to login. If failed, we show an error.
-		if (signup) {
-			history.push("/login");
+			let signup = await actions.signupUser(data);
+			// wait for response. If successful, we send them to login. If failed, we show an error.
+			if (signup) {
+				history.push("/login");
+			} else {
+				console.error("there was a problem with signup!");
+			}
 		} else {
 			console.error("there was a problem with signup!");
 		}
