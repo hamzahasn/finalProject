@@ -16,6 +16,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
+			signupUser: data => {
+				console.log(data);
+				return true;
+				// return fetch().then().then(data => setStore({ "foo": data.bar }))
+			},
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
