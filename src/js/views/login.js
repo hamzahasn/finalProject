@@ -1,10 +1,9 @@
 import React from "react";
-import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
 
 export const Login = () => (
 	<div className="text-center mt-5">
-		<form>
+		<form onSubmit={e => e.preventDefault()}>
 			<div className="form-group">
 				<label>Email address</label>
 				<input
