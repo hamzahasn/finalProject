@@ -3,6 +3,7 @@ import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
 import Jumbo from "../component/jumbo";
 import Card from "../component/card";
+import Search from "../component/search";
 
 export const Home = () => {
 	const carddata = [
@@ -52,6 +53,7 @@ Take control of your goals. Track calories, break down ingredients, and log acti
 				jumboheading="Fitness starts with what you eat."
 				jumboit="Start for Free"
 			/>
+			<Search />
 			<div className="container-fluid">
 				<div className="row">
 					{carddata.map((item, index) => {
