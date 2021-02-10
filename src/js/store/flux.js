@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			searchResult: {},
 			demo: [
 				{
 					title: "FIRST",
@@ -15,6 +16,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 			]
 		},
 		actions: {
+			search: food => {
+				console.log(food);
+				// fetch(`https://trackapi.nutritionix.com/v2/search/instant?query=${food}` , {
+				fetch("https://trackapi.nutritionix.com/v2/search/instant?query=" + food, {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						"x-app-key": "2936ad558fb47c9d16a568df935b207f",
+						"x-app-id": "08e0bd2f"
+					}
+				})
+					.then(resp => {
+						if (!resp.ok) throw new Error(resp.statusText);
+						return resp.json(); // (returns promise) will try to parse the result as json as return a promise that you can .then for results
+					})
+					.then(data => {
+						setStore({ searchResult: data });
+					})
+
+					.catch(error => {
+						//error handling
+						console.log(error);
+					});
+			},
 			// Use getActions to call a function within a fuction
 			signupUser: data => {
 				console.log(data);

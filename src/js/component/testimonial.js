@@ -1,37 +1,75 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "../../styles/testimonial.scss";
 
-const Testimonial = ()  => {
+const Testimonial = () => {
 	return (
-
-        <div className="container">
-            <div id="demo" className="carousel" data-ride="carousel">
-                <div className="carousel-inner">
-                    <div className="carousel-item active">
-                        <div className="carousel-caption">
-                            <p>If Shai Reznik's TDD videos don't convince you to add automated testing your code, I don't know what will.This was the very best explanation of frameworks for brginners that I've ever seen. </p> <img src="https://i.imgur.com/lE89Aey.jpg"/>
-                            <div id="image-caption">Nick Doe</div>
-                        </div>
-                    </div>
-                    <div className="carousel-item">
-                        <div className="carousel-caption">
-                            <p>If Shai Reznik's TDD videos don't convince you to add automated testing your code, I don't know what will.This was the very best explanation of frameworks for brginners that I've ever seen.</p> <img src="https://i.imgur.com/QptVdsp.jpg" className="img-fluid"/>
-                            <div id="image-caption">Cromption Greves</div>
-                        </div>
-                    </div>
-                    <div className="carousel-item">
-                        <div className="carousel-caption">
-                            <p>If Shai Reznik's TDD videos don't convince you to add automated testing your code, I don't know what will.This was the very best explanation of frameworks for brginners that I've ever seen.</p> <img src="https://i.imgur.com/jQWThIn.jpg" className="img-fluid"/>
-                            <div id="image-caption">Harry Mon</div>
-                        </div>
-                    </div>
-                </div> <a className="carousel-control-prev" href="#demo" data-slide="prev"> <i className='fas fa-arrow-left'></i> </a> <a className="carousel-control-next" href="#demo" data-slide="next"> <i className='fas fa-arrow-right'></i> </a>
-            </div>
-        </div>
-
-    );
+		<>
+			<div id="myCarousel" className="carousel slide" data-ride="carousel">
+				<ol className="carousel-indicators">
+					<li data-target="#myCarousel" data-slide-to="0" className="active" />
+					<li data-target="#myCarousel" data-slide-to="1" />
+					<li data-target="#myCarousel" data-slide-to="2" />
+				</ol>
+				<div className="carousel-inner">
+					<div className="item carousel-item active">
+						<div className="img-box">
+							<img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1558758981/male-2634974_640.jpg" />
+						</div>
+						<p className="testimonial">
+							Phasellus vitae suscipit justo. Mauris pharetra feugiat ante id lacinia. Etiam faucibus
+							mauris id tempor egestas. Duis luctus turpis at accumsan tincidunt. Phasellus risus risus,
+							volutpat vel tellus ac, tincidunt fringilla massa. Etiam hendrerit dolor eget rutrum.
+						</p>
+						<p className="overview">
+							<b>Paula Wilsons</b>
+							Seo Analyst{" "}
+						</p>
+						<div className="star-rating"> </div>
+					</div>
+					<div className="item carousel-item">
+						<div className="img-box">
+							<img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1558758980/people-875617_1280.jpg" />
+						</div>
+						<p className="testimonial">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at,
+							luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante. Vestibulum
+							idac nisl bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.
+						</p>
+						<p className="overview">
+							<b>Paula Wilson</b>
+							Media Analyst{" "}
+						</p>
+						<div className="star-rating"> </div>
+					</div>
+					<div className="item carousel-item">
+						<div className="img-box">
+							<img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1558758980/portrait-1287413_640.jpg" />
+						</div>
+						<p className="testimonial">
+							Vestibulum quis quam ut magna consequat faucibus. Pellentesque eget nisi a mi suscipit
+							tincidunt. Utmtc tempus dictum risus. Pellentesque viverra sagittis quam at mattis.
+							Suspendisse potenti. Aliquam sit amet gravida nibh, facilisis gravida odio. Phasellus auctor
+							velit.
+						</p>
+						<p className="overview">
+							<b>Antonio Moreno</b>
+							Web Developer
+						</p>
+						<div className="star-rating"> </div>
+					</div>
+				</div>{" "}
+				<a className="carousel-control left carousel-control-prev" href="#myCarousel" data-slide="prev">
+					{" "}
+					<i className="fa fa-angle-left" />{" "}
+				</a>{" "}
+				<a className="carousel-control right carousel-control-next" href="#myCarousel" data-slide="next">
+					{" "}
+					<i className="fa fa-angle-right" />{" "}
+				</a>
+			</div>
+		</>
+	);
 };
-
-
 
 export default Testimonial;
