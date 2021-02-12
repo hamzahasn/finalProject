@@ -11,10 +11,17 @@ import Navbar from "./component/navbar";
 import Footer from "./component/footer";
 import { Login } from "./views/login";
 import { Signup } from "./views/signup";
+import { About } from "./views/about";
 
 //create your first component
 const Layout = () => {
-	const menu = [{ label: "Home", url: "/" }, { label: "About", url: "#" }, { label: "Contact", url: "#" }];
+	const menu = [
+		{ label: "Home", url: "/" },
+		{ label: "About", url: "/about" },
+		{ label: "Contact", url: "#" },
+		{ label: "Signup", url: "/signup" },
+		{ label: "Login", url: "/login" }
+	];
 
 	//the basename is used when your project is published in a subdirectory and not in the root of the domain
 	// you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
@@ -45,6 +52,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/signup">
 							<Signup />
+						</Route>
+						<Route exact path="/about">
+							<About />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
