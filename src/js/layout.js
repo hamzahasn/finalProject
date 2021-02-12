@@ -11,6 +11,7 @@ import Navbar from "./component/navbar";
 import Footer from "./component/footer";
 import { Login } from "./views/login";
 import { Signup } from "./views/signup";
+import { Diarysearch } from "./views/diarysearch";
 
 //create your first component
 const Layout = () => {
@@ -45,6 +46,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/signup">
 							<Signup />
+						</Route>
+						<Route exact path="/diary/search">
+							<Diarysearch />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
