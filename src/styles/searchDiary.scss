@@ -1,0 +1,13 @@
+.search-result-list-group{
+
+    .col:not(:last-of-type) {
+        border-right: 1px solid rgba(0, 0, 0, 0.125);
+    }
+
+    .list-group-item:not(:first-of-type){
+        &:hover{
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+        }
+    }
+}
