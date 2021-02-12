@@ -11,7 +11,11 @@ import Navbar from "./component/navbar";
 import Footer from "./component/footer";
 import { Login } from "./views/login";
 import { Signup } from "./views/signup";
+<<<<<<< HEAD
 import { About } from "./views/about";
+=======
+import { Diarysearch } from "./views/diarysearch";
+>>>>>>> 5b4a3ee7b6160981c9bf3c36dc4a2a8eac5ab233
 
 //create your first component
 const Layout = () => {
@@ -53,8 +57,13 @@ const Layout = () => {
 						<Route exact path="/signup">
 							<Signup />
 						</Route>
+<<<<<<< HEAD
 						<Route exact path="/about">
 							<About />
+=======
+						<Route exact path="/diary/search">
+							<Diarysearch />
+>>>>>>> 5b4a3ee7b6160981c9bf3c36dc4a2a8eac5ab233
 						</Route>
 						<Route>
 							<h1>Not found!</h1>

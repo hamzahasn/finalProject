@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
+import { Context } from "../store/appContext";
 
 const Search = () => {
+	const [currentsearch, setCurrentsearch] = useState("");
+	const [food, setFood] = useState([]);
+	const { store, actions } = useContext(Context);
+
 	return (
 		<>
 			<div className="searchtext text-center">
@@ -15,8 +20,12 @@ const Search = () => {
 					placeholder="Search"
 					aria-label="Search"
 					aria-describedby="search-addon"
+					onChange={e => setCurrentsearch(e.target.value)}
 				/>
-				<span className="input-group-text border-0" id="search-addon">
+				<span
+					onClick={() => actions.search(currentsearch)}
+					className="input-group-text border-0"
+					id="search-addon">
 					<i className="fas fa-search" />
 				</span>
 			</div>
