@@ -13,6 +13,7 @@ export const Diary = () => {
 	const [food, setFood] = useState([]);
 	const { store, actions } = useContext(Context);
 	const [date, setDate] = useState(new Date());
+	const [diaryEntry, setDiaryEntry] = useState([]);
 	const [morning, setMorning] = useState([]);
 	const [afternoon, setAfternoon] = useState([]);
 	const [night, setNight] = useState([]);
@@ -20,6 +21,14 @@ export const Diary = () => {
 	const handleSaveDiary = e => {
 		//logic for saving the day in diary
 	};
+
+	useEffect(
+		() => {
+			//find the diary entry array.find()
+			//function to find length to make sure it's not 0, length > 0
+		},
+		[diaryEntry]
+	);
 
 	return (
 		<>
