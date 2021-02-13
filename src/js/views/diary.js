@@ -12,10 +12,13 @@ export const Diary = () => {
 	const [currentsearch, setCurrentsearch] = useState("");
 	const [food, setFood] = useState([]);
 	const { store, actions } = useContext(Context);
-	const [value, onChange] = useState(new Date());
+	const [date, setDate] = useState(new Date());
+	const [morning, setMorning] = useState([]);
+	const [afternoon, setAfternoon] = useState([]);
+	const [night, setNight] = useState([]);
 
-	const handleKeyPress = e => {
-		if (e.key === "Enter") actions.search(currentsearch);
+	const handleSaveDiary = e => {
+		//logic for saving the day in diary
 	};
 
 	return (
@@ -24,34 +27,114 @@ export const Diary = () => {
 				<div className="d-flex flex-row">
 					<h4 className="mr-2">Your Food Diary for:</h4>
 					<div>
-						<DatePicker className="calendar" onChange={onChange} value={value} />
+						<DatePicker className="calendar" onChange={setDate} value={date} />
 					</div>
 				</div>
 
-				<ListGroup className="search-result-list-group">
+				<ListGroup className="diary-list-group">
+					<h2>Morning</h2>
 					<ListGroup.Item>
 						<Row>
-							<Col>Calories</Col>
-							<Col xs={1}>Carbs</Col>
-							<Col xs={1}>Fat</Col>
-							<Col xs={1}>Protein</Col>
+							<Col>Name</Col>
+							<Col xs={1}>Qty</Col>
+							<Col xs={1}>Calories</Col>
+							<Col xs={1}>Action</Col>
 						</Row>
 					</ListGroup.Item>
+					{// find the diary for the selected date
+					// check if length > 0 for this part of the day
+					// if length > 0, map the array and display info
 
-					{typeof store.searchResult.common !== "undefined" &&
-						store.searchResult.common.map((item, index) => (
-							<ListGroup.Item key={index}>
-								<Row>
-									<Col>{item.food_name}</Col>
+					morning.map((item, index) => (
+						<ListGroup.Item key={index}>
+							<Row>
+								<Col>{item.food_name}</Col>
 
-									<Col>{item.serving_unit}</Col>
-									<Col xs={1}>{item.serving_qty}</Col>
-									<Col xs={1}>
-										<i className="fas fa-plus" />
-									</Col>
-								</Row>
-							</ListGroup.Item>
-						))}
+								<Col>{item.serving_unit}</Col>
+								<Col xs={1}>{item.serving_qty}</Col>
+								<Col xs={1}>
+									<i className="fas fa-plus" />
+								</Col>
+							</Row>
+						</ListGroup.Item>
+					))}
+					<ListGroup.Item>
+						<Row>
+							<Col>
+								Add New Item <i className="fas fa-plus" />
+							</Col>
+						</Row>
+					</ListGroup.Item>
+				</ListGroup>
+				<ListGroup className="diary-list-group">
+					<h2>Afternoon</h2>
+					<ListGroup.Item>
+						<Row>
+							<Col>Name</Col>
+							<Col xs={1}>Qty</Col>
+							<Col xs={1}>Calories</Col>
+							<Col xs={1}>Action</Col>
+						</Row>
+					</ListGroup.Item>
+					{// find the diary for the selected date
+					// check if length > 0 for this part of the day
+					// if length > 0, map the array and display info
+
+					afternoon.map((item, index) => (
+						<ListGroup.Item key={index}>
+							<Row>
+								<Col>{item.food_name}</Col>
+
+								<Col>{item.serving_unit}</Col>
+								<Col xs={1}>{item.serving_qty}</Col>
+								<Col xs={1}>
+									<i className="fas fa-plus" />
+								</Col>
+							</Row>
+						</ListGroup.Item>
+					))}
+					<ListGroup.Item>
+						<Row>
+							<Col>
+								Add New Item <i className="fas fa-plus" />
+							</Col>
+						</Row>
+					</ListGroup.Item>
+				</ListGroup>
+				<ListGroup className="diary-list-group">
+					<h2>Night</h2>
+					<ListGroup.Item>
+						<Row>
+							<Col>Name</Col>
+							<Col xs={1}>Qty</Col>
+							<Col xs={1}>Calories</Col>
+							<Col xs={1}>Action</Col>
+						</Row>
+					</ListGroup.Item>
+					{// find the diary for the selected date
+					// check if length > 0 for this part of the day
+					// if length > 0, map the array and display info
+
+					night.map((item, index) => (
+						<ListGroup.Item key={index}>
+							<Row>
+								<Col>{item.food_name}</Col>
+
+								<Col>{item.serving_unit}</Col>
+								<Col xs={1}>{item.serving_qty}</Col>
+								<Col xs={1}>
+									<i className="fas fa-plus" />
+								</Col>
+							</Row>
+						</ListGroup.Item>
+					))}
+					<ListGroup.Item>
+						<Row>
+							<Col>
+								Add New Item <i className="fas fa-plus" />
+							</Col>
+						</Row>
+					</ListGroup.Item>
 				</ListGroup>
 			</Container>
 		</>
