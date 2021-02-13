@@ -6,6 +6,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import "../../styles/searchDiary.scss";
+import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 export const Diarysearch = () => {
 	const [currentsearch, setCurrentsearch] = useState("");
@@ -42,23 +44,50 @@ export const Diarysearch = () => {
 				<ListGroup className="search-result-list-group">
 					<ListGroup.Item>
 						<Row>
+							<Col xs={12} sm={2} />
 							<Col>Name</Col>
 							<Col>Serving Unit</Col>
-							<Col xs={1}>Qty</Col>
-							<Col xs={1}>Action</Col>
+							<Col>Calories</Col>
+							<Col xs={6} sm={1}>
+								Qty
+							</Col>
+							<Col xs={6} sm={1}>
+								Action
+							</Col>
 						</Row>
 					</ListGroup.Item>
 
-					{typeof store.searchResult.common !== "undefined" &&
-						store.searchResult.common.map((item, index) => (
+					{typeof store.searchResult.branded !== "undefined" &&
+						store.searchResult.branded.map((item, index) => (
 							<ListGroup.Item key={index}>
-								<Row>
-									<Col>{item.food_name}</Col>
+								<Row className="d-flex align-items-center justify-content-center">
+									<Col xs={12} sm={2}>
+										<img
+											style={{
+												maxWidth: "150px",
+												height: "150px",
+												objectFit: "cover"
+											}}
+											src={item.photo.thumb}
+										/>
+									</Col>
+									<Col className="d-flex align-items-center justify-content-center">
+										{item.food_name}
+									</Col>
 
-									<Col>{item.serving_unit}</Col>
-									<Col xs={1}>{item.serving_qty}</Col>
-									<Col xs={1}>
-										<i className="fas fa-plus" />
+									<Col className="d-flex align-items-center justify-content-center">
+										{item.serving_unit}
+									</Col>
+									<Col className="d-flex align-items-center justify-content-center">
+										{item.nf_calories}
+									</Col>
+									<Col xs={6} sm={1} className="d-flex align-items-center justify-content-center">
+										{item.serving_qty}
+									</Col>
+									<Col xs={6} sm={1} className="d-flex align-items-center justify-content-center">
+										<Button variant="danger">
+											<i className="fas fa-plus" />
+										</Button>
 									</Col>
 								</Row>
 							</ListGroup.Item>
