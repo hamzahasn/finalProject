@@ -22,7 +22,8 @@ const Layout = () => {
 		{ label: "About", url: "/about" },
 		{ label: "Contact", url: "#" },
 		{ label: "Signup", url: "/signup" },
-		{ label: "Login", url: "/login" }
+		{ label: "Login", url: "/login" },
+		{ label: "Diary", url: "/diary/search" }
 	];
 
 	//the basename is used when your project is published in a subdirectory and not in the root of the domain

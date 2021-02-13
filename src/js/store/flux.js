@@ -2,6 +2,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			searchResult: {},
+			diary: [
+				{
+					date: "",
+					morning: [],
+					afternoon: [],
+					night: []
+				}
+			],
+			profile: {},
 			demo: [
 				{
 					title: "FIRST",
