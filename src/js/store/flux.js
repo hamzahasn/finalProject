@@ -25,6 +25,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			]
 		},
 		actions: {
+			addFoodItem: (foodItem, partOfTheDay) => {
+				console.log(foodItem, partOfTheDay);
+				setStore({ searchResult: {} });
+			},
 			search: food => {
 				console.log(food);
 				// fetch(`https://trackapi.nutritionix.com/v2/search/instant?query=${food}` , {

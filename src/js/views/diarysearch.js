@@ -9,7 +9,7 @@ import "../../styles/searchDiary.scss";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
-export const Diarysearch = () => {
+export const Diarysearch = props => {
 	const [currentsearch, setCurrentsearch] = useState("");
 	const [food, setFood] = useState([]);
 	const { store, actions } = useContext(Context);
@@ -85,7 +85,9 @@ export const Diarysearch = () => {
 										{item.serving_qty}
 									</Col>
 									<Col xs={6} sm={1} className="d-flex align-items-center justify-content-center">
-										<Button variant="danger">
+										<Button
+											onClick={() => actions.addFoodItem(item, props.dailyFood)}
+											variant="danger">
 											<i className="fas fa-plus" />
 										</Button>
 									</Col>
@@ -96,4 +98,8 @@ export const Diarysearch = () => {
 			</Container>
 		</>
 	);
+};
+
+Diarysearch.propTypes = {
+	dailyFood: PropTypes.string
 };
