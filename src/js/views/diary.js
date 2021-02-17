@@ -7,6 +7,7 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import "../../styles/searchDiary.scss";
 import DatePicker from "react-date-picker";
+import { Diarysearch } from "./diarysearch";
 
 export const Diary = () => {
 	const [currentsearch, setCurrentsearch] = useState("");
@@ -74,6 +75,13 @@ export const Diary = () => {
 							</Col>
 						</Row>
 					</ListGroup.Item>
+					<ListGroup.Item>
+						<Row>
+							<Col>
+								<Diarysearch dailyFood="morning" />
+							</Col>
+						</Row>
+					</ListGroup.Item>
 				</ListGroup>
 				<ListGroup className="diary-list-group">
 					<h2>Afternoon</h2>
@@ -109,6 +117,13 @@ export const Diary = () => {
 							</Col>
 						</Row>
 					</ListGroup.Item>
+					<ListGroup.Item>
+						<Row>
+							<Col>
+								<Diarysearch dailyFood="afternoon" />
+							</Col>
+						</Row>
+					</ListGroup.Item>
 				</ListGroup>
 				<ListGroup className="diary-list-group">
 					<h2>Night</h2>
@@ -141,6 +156,13 @@ export const Diary = () => {
 						<Row>
 							<Col>
 								Add New Item <i className="fas fa-plus" />
+							</Col>
+						</Row>
+					</ListGroup.Item>
+					<ListGroup.Item>
+						<Row>
+							<Col>
+								<Diarysearch dailyFood="night" />
 							</Col>
 						</Row>
 					</ListGroup.Item>
