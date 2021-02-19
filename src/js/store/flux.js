@@ -1,4 +1,6 @@
 const getState = ({ getStore, getActions, setStore }) => {
+	const base_url = "https://3000-scarlet-swordtail-uxps06va.ws-us03.gitpod.io";
+
 	return {
 		store: {
 			searchResult: {},
@@ -70,12 +72,41 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(error);
 					});
 			},
+
 			// Use getActions to call a function within a fuction
 			signupUser: data => {
 				console.log(data);
-				return true;
-				// return fetch().then().then(data => setStore({ "foo": data.bar }))
+				return fetch(`${base_url}/register/`, {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify(data)
+				})
+					.then(res => res.json())
+					.then(data => {
+						return true;
+					})
+					.catch(err => err);
 			},
+
+			loginUser: data => {
+				console.log(data);
+				return fetch(`${base_url}/login/`, {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify(data)
+				})
+					.then(res => res.json())
+					.then(data => {
+						setStore({ loggedIn: true, token: data.token, user: data.user });
+						return true;
+					})
+					.catch(err => err);
+			},
+
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},

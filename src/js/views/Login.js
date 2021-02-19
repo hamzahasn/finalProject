@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
-import { Link, useParams } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Form } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import "../../styles/index.scss";
 
 export const Login = props => {
+	const { store, actions } = useContext(Context);
+	let history = useHistory();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -16,6 +18,15 @@ export const Login = props => {
 
 	function handleSubmit(event) {
 		event.preventDefault();
+		let login = actions.loginUser({
+			email: email,
+			password: password
+		});
+		if (login) {
+			history.push("/diary");
+		} else {
+			console.error("error: ", login);
+		}
 	}
 
 	return (

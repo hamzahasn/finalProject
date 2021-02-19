@@ -9,7 +9,7 @@ import injectContext from "./store/appContext";
 
 import Navbar from "./component/navbar";
 import Footer from "./component/footer";
-import { Login } from "./views/login";
+import { Login } from "./views/Login";
 import { Signup } from "./views/signup";
 import { About } from "./views/about";
 import { Diarysearch } from "./views/diarysearch";
