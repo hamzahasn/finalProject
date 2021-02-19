@@ -20,11 +20,11 @@ export const Signup = () => {
 		if (terms == true && password == confirmPassword) {
 			// if they match, call action in flux to send all state variables to the backend api for signup
 			let data = {
-				first_name: fName,
-				last_name: lName,
+				fname: fName,
+				lname: lName,
 				email: email,
 				password: password,
-				terms_accepted: terms
+				tos: terms
 			};
 
 			let signup = await actions.signupUser(data);
@@ -32,7 +32,7 @@ export const Signup = () => {
 			if (signup) {
 				history.push("/login");
 			} else {
-				console.error("there was a problem with signup!");
+				console.error("error: ", signup);
 			}
 		} else {
 			console.error("there was a problem with signup!");
