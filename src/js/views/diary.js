@@ -47,6 +47,7 @@ export const Diary = () => {
 						<Row>
 							<Col>Name</Col>
 							<Col xs={1}>Qty</Col>
+							<Col xs={1}>Serving Size</Col>
 							<Col xs={1}>Calories</Col>
 							<Col xs={1}>Action</Col>
 						</Row>
@@ -55,13 +56,14 @@ export const Diary = () => {
 					// check if length > 0 for this part of the day
 					// if length > 0, map the array and display info
 
-					morning.map((item, index) => (
+					store.foodselected.morning.map((item, index) => (
 						<ListGroup.Item key={index}>
 							<Row>
 								<Col>{item.food_name}</Col>
-
-								<Col>{item.serving_unit}</Col>
+								<Col xs={1}>{item.qty}</Col>
 								<Col xs={1}>{item.serving_qty}</Col>
+								<Col xs={1}>{item.nf_calories}</Col>
+
 								<Col xs={1}>
 									<i className="fas fa-plus" />
 								</Col>
@@ -97,7 +99,7 @@ export const Diary = () => {
 					// check if length > 0 for this part of the day
 					// if length > 0, map the array and display info
 
-					afternoon.map((item, index) => (
+					store.foodselected.afternoon.map((item, index) => (
 						<ListGroup.Item key={index}>
 							<Row>
 								<Col>{item.food_name}</Col>
@@ -119,9 +121,7 @@ export const Diary = () => {
 					</ListGroup.Item>
 					<ListGroup.Item>
 						<Row>
-							<Col>
-								<Diarysearch dailyFood="afternoon" />
-							</Col>
+							<Col>{/* <Diarysearch dailyFood="afternoon" /> */}</Col>
 						</Row>
 					</ListGroup.Item>
 				</ListGroup>
@@ -139,7 +139,7 @@ export const Diary = () => {
 					// check if length > 0 for this part of the day
 					// if length > 0, map the array and display info
 
-					night.map((item, index) => (
+					store.foodselected.night.map((item, index) => (
 						<ListGroup.Item key={index}>
 							<Row>
 								<Col>{item.food_name}</Col>
@@ -161,9 +161,7 @@ export const Diary = () => {
 					</ListGroup.Item>
 					<ListGroup.Item>
 						<Row>
-							<Col>
-								<Diarysearch dailyFood="night" />
-							</Col>
+							<Col>{/* <Diarysearch dailyFood="night" /> */}</Col>
 						</Row>
 					</ListGroup.Item>
 				</ListGroup>
