@@ -10,6 +10,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					night: []
 				}
 			],
+			foodselected: {
+				date: "",
+				morning: [],
+				afternoon: [],
+				night: []
+			},
+
 			profile: {},
 			demo: [
 				{
@@ -26,11 +33,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			addFoodItem: (foodItem, partOfTheDay) => {
-				console.log(foodItem, partOfTheDay);
-				setStore({ searchResult: {} });
+				let store = getStore();
+				let food_index = store.foodselected[partOfTheDay].indexOf(foodItem);
+
+				if (food_index !== -1) {
+					store.foodselected[partOfTheDay][food_index].qty++;
+				} else {
+					foodItem.qty = 1;
+					store.foodselected[partOfTheDay] = store.foodselected[partOfTheDay].concat(foodItem);
+				}
+
+				// console.log(partOfTheDay);
+				setStore(store);
 			},
 			search: food => {
-				console.log(food);
+				// console.log(food);
 				// fetch(`https://trackapi.nutritionix.com/v2/search/instant?query=${food}` , {
 				fetch("https://trackapi.nutritionix.com/v2/search/instant?query=" + food, {
 					method: "GET",
