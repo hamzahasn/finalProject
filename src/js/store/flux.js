@@ -46,6 +46,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// console.log(partOfTheDay);
 				setStore(store);
 			},
+			updateFoodQty: (qty, index, time_of_day) => {
+				let store = getStore();
+				store.foodselected[time_of_day][index].qty = Number(qty);
+				setStore(store);
+			},
+			removeFoodItem: (current_index, time_of_day) => {
+				let store = getStore();
+				let newArray = store.foodselected[time_of_day].filter((item, index) => index !== current_index);
+
+				setStore({
+					foodselected: {
+						...store.foodselected,
+						[time_of_day]: newArray
+					}
+				});
+			},
 			search: food => {
 				// console.log(food);
 				// fetch(`https://trackapi.nutritionix.com/v2/search/instant?query=${food}` , {
@@ -70,6 +86,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(error);
 					});
 			},
+			clearSearch: () => setStore({ searchResult: {} }),
 			// Use getActions to call a function within a fuction
 			signupUser: data => {
 				console.log(data);
