@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import PropTypes from "prop-types";
+import PropTypes, { array } from "prop-types";
 import { Context } from "../store/appContext";
 import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";
@@ -13,19 +13,41 @@ import { Diarysearch } from "./diarysearch";
 export const Diary = () => {
 	const { store, actions } = useContext(Context);
 	const [date, setDate] = useState(new Date());
+	const [total, setTotal] = useState(0);
 
 	const handleSaveDiary = e => {
 		//logic for saving the day in diary
 	};
 
-	// useEffect(
-	// 	() => {
-	// 		//find the diary entry array.find()
-	// 		//function to find length to make sure it's not 0, length > 0
-	// 	},
-	// 	[diaryEntry]
-	// );
+	useEffect(
+		() => {
+			console.log("inside effect");
 
+			calculateTotals();
+		},
+		[store.foodselected.morning, store.foodselected.afternoon, store.foodselected.night]
+	);
+
+	const calculateTotals = () => {
+		console.log("calculating totals");
+		console.log("sum foods test", store.foodselected.morning);
+
+		let runningTotal =
+			sumFoods(store.foodselected.morning) +
+			sumFoods(store.foodselected.afternoon) +
+			sumFoods(store.foodselected.night);
+		console.log("running total", runningTotal);
+		setTotal(runningTotal);
+	};
+	const sumFoods = arr => {
+		let x = 0;
+		for (let i = 0; i < arr.length; i++) {
+			x += arr[i].nf_calories * arr[i].qty;
+			console.log("calories", arr[i].nf_calories);
+			console.log("qty", arr[i].qty);
+		}
+		return x;
+	};
 	return (
 		<Container>
 			<div className="d-flex flex-row">
@@ -61,7 +83,10 @@ export const Diary = () => {
 									min="1"
 									step="1"
 									value={item.qty}
-									onChange={e => actions.updateFoodQty(e.target.value, index, "morning")}
+									onChange={e => {
+										actions.updateFoodQty(e.target.value, index, "morning");
+										calculateTotals();
+									}}
 									className="form-control"
 								/>
 							</Col>
@@ -108,7 +133,10 @@ export const Diary = () => {
 									min="1"
 									step="1"
 									value={item.qty}
-									onChange={e => actions.updateFoodQty(e.target.value, index, "afternoon")}
+									onChange={e => {
+										actions.updateFoodQty(e.target.value, index, "afternoon");
+										calculateTotals();
+									}}
 									className="form-control"
 								/>
 							</Col>
@@ -155,7 +183,10 @@ export const Diary = () => {
 									min="1"
 									step="1"
 									value={item.qty}
-									onChange={e => actions.updateFoodQty(e.target.value, index, "night")}
+									onChange={e => {
+										actions.updateFoodQty(e.target.value, index, "night");
+										calculateTotals();
+									}}
 									className="form-control"
 								/>
 							</Col>
@@ -181,6 +212,7 @@ export const Diary = () => {
 				<ListGroup.Item>
 					<Row>
 						<Col>Daily Calories:</Col>
+						<Col>{total}</Col>
 					</Row>
 				</ListGroup.Item>
 			</ListGroup>

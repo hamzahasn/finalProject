@@ -7,7 +7,7 @@ const Jumbo = props => {
 			<div className="jumbotron">
 				<div className="row">
 					<div className="col-12 col-md-6">
-						<h1 className="display-4 heading">{props.jumboheading}</h1>
+						<h1 className="display-2 heading">{props.jumboheading}</h1>
 						<p className="lead">{props.about}</p>
 						<a className="btn btn-primary btn-lg" href={props.jumbolink} role="button">
 							{props.jumboit}

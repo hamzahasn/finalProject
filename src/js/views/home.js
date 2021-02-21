@@ -54,9 +54,9 @@ Take control of your goals. Track calories, break down ingredients, and log acti
 				jumboheading="Fitness starts with what you eat."
 				jumboit="Start for Free"
 			/>
-			<Search />
+			{/* <Search /> */}
 			<Columns />
-			<Testimonial />
+			{/* <Testimonial /> */}
 			<div className="container-fluid">
 				<div className="row">
 					{carddata.map((item, index) => {
