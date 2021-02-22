@@ -1,5 +1,5 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	const base_url = "https://3000-scarlet-swordtail-uxps06va.ws-us03.gitpod.io";
+	const base_url = "https://fiture-backend.herokuapp.com";
 
 	return {
 		store: {
