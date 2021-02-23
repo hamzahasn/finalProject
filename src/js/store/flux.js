@@ -4,22 +4,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			searchResult: {},
-			diary: [
-				{
-					date: "",
-					morning: [],
-					afternoon: [],
-					night: []
-				}
-			],
+			diary: [],
 			foodselected: {
 				date: "",
 				morning: [],
 				afternoon: [],
 				night: []
 			},
-
-			profile: {},
+			loggedIn: false,
+			user: {},
+			token: "",
 			demo: [
 				{
 					title: "FIRST",
@@ -46,6 +40,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 
 				// console.log(partOfTheDay);
+				setStore(store);
+			},
+			logout: () => {
+				let store = getStore();
+				store.loggedIn = false;
+				store.token = "";
+				store.user = {};
 				setStore(store);
 			},
 			updateFoodQty: (qty, index, time_of_day) => {
@@ -89,7 +90,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 			clearSearch: () => setStore({ searchResult: {} }),
+			setDiary: (date, diaryEntry) => {
+				let store = getStore();
 
+				store.foodselected.date = date;
+				// loop diaryEntry.foods and put the foods in the correct array
+				// ie. store.foodselected.morning
+				// while looping: store.foodselected[diaryentry.foods[i].time_of_day].push(diaryEntry.foods[i])
+
+				// for(let i=0;i<arr.length;i++)
+
+				setStore(store);
+			},
 			// Use getActions to call a function within a fuction
 			signupUser: data => {
 				console.log(data);
@@ -106,7 +118,56 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(err => err);
 			},
+			createDiaryEntry: () => {
+				let store = getStore();
+				let morning = store.foodselected.morning;
+				let afternoon = store.foodselected.afternoon;
+				let night = store.foodselected.night;
 
+				function updateTimeOfDay(arr, time) {
+					for (let i = 0; i < arr.length; i++) {
+						arr[i].time_of_day = time;
+					}
+					return arr;
+				}
+				updateTimeOfDay(morning, "morning");
+				updateTimeOfDay(afternoon, "afternoon");
+				updateTimeOfDay(night, "night");
+
+				let data = {
+					date: store.foodselected.date,
+					foods: morning.concat(afternoon, night),
+					user_id: store.user.id
+				};
+				return fetch(`${base_url}/diary/`, {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify(data)
+				})
+					.then(res => {
+						if (!res.ok) throw new Error(`Error ${res.status} - ${res.statusText}`);
+						return res.json();
+					})
+					.then(data => {
+						// need to re-sync the diary
+						getActions().syncUserDiary();
+					})
+					.catch(err => err);
+			},
+			syncUserDiary: () => {
+				let store = getStore();
+				return fetch(`${base_url}/diary/user/${store.user.id}`)
+					.then(res => {
+						if (!res.ok) throw new Error(`Error ${res.status} - ${res.statusText}`);
+						return res.json();
+					})
+					.then(data => {
+						setStore({ diary: data.diary });
+					})
+					.catch(err => err);
+			},
 			loginUser: data => {
 				console.log(data);
 				return fetch(`${base_url}/login/`, {
@@ -116,9 +177,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 					},
 					body: JSON.stringify(data)
 				})
-					.then(res => res.json())
+					.then(res => {
+						if (!res.ok) throw new Error(`Error ${res.status} - ${res.statusText}`);
+						return res.json();
+					})
 					.then(data => {
-						setStore({ loggedIn: true, token: data.token, user: data.user });
+						console.log(data);
+						setStore({
+							loggedIn: true,
+							token: data.token,
+							user: {
+								id: data.user.id,
+								email: data.user.email,
+								first_name: data.user.first_name,
+								last_name: data.user.last_name
+							},
+							diary: data.user.diary
+						});
 						return true;
 					})
 					.catch(err => err);

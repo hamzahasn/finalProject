@@ -22,10 +22,18 @@ export const Diary = () => {
 	useEffect(
 		() => {
 			console.log("inside effect");
-
 			calculateTotals();
 		},
 		[store.foodselected.morning, store.foodselected.afternoon, store.foodselected.night]
+	);
+	useEffect(
+		() => {
+			let current = date.toISOString().split("T")[0];
+			let findSelected = store.diary.find(item => item.date === current);
+			console.log("found", findSelected);
+			actions.setDiary(current, date);
+		},
+		[date]
 	);
 
 	const calculateTotals = () => {
@@ -54,6 +62,9 @@ export const Diary = () => {
 				<h4 className="mr-2">Your Food Diary for:</h4>
 				<div>
 					<DatePicker className="calendar" onChange={setDate} value={date} />
+				</div>
+				<div className="ml-auto">
+					<Button onClick={actions.createDiaryEntry}>Save Diary Entry</Button>
 				</div>
 			</div>
 

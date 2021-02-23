@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
-
+import { Context } from "./store/appContext";
 import { Home } from "./views/home";
 import { Demo } from "./views/demo";
 import { Single } from "./views/single";
@@ -17,12 +17,11 @@ import { Diary } from "./views/diary";
 
 //create your first component
 const Layout = () => {
+	const { store, actions } = useContext(Context);
 	const menu = [
 		{ label: "Home", url: "/" },
 		{ label: "About", url: "/about" },
 		{ label: "Contact", url: "#" },
-		{ label: "Signup", url: "/signup" },
-		{ label: "Login", url: "/login" },
 		{ label: "Diary", url: "/diary" }
 	];
 
