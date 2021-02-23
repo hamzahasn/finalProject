@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 const Navbar = props => {
+	const { store, actions } = useContext(Context);
 	const buildMenu = props.menu.map((item, index) => {
 		return (
 			<li key={index} className="nav-item">
-				<a className="nav-link" href={item.url}>
+				<Link className="nav-link" to={item.url}>
 					{item.label}
-				</a>
+				</Link>
 			</li>
 		);
 	});
@@ -29,7 +32,29 @@ const Navbar = props => {
 				<span className="navbar-toggler-icon" />
 			</button>
 			<div className="collapse navbar-collapse" id="navbarNav">
-				<ul className="navbar-nav">{buildMenu}</ul>
+				<ul className="navbar-nav">
+					{buildMenu}
+					{store.loggedIn ? (
+						<li className="nav-item ml-auto">
+							<Link className="nav-link" to="/" onClick={actions.logout}>
+								Logout
+							</Link>
+						</li>
+					) : (
+						<>
+							<li className="nav-item ml-auto">
+								<Link className="nav-link" to="/signup">
+									Signup
+								</Link>
+							</li>
+							<li className="nav-item">
+								<Link className="nav-link" to="/login">
+									Login
+								</Link>
+							</li>
+						</>
+					)}
+				</ul>
 			</div>
 		</nav>
 	);

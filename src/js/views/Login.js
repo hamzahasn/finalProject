@@ -5,27 +5,31 @@ import { Context } from "../store/appContext";
 import { Form } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import "../../styles/index.scss";
+import Alert from "react-bootstrap/Alert";
 
 export const Login = props => {
 	const { store, actions } = useContext(Context);
 	let history = useHistory();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [error, setError] = useState("");
 
 	function validateForm() {
 		return email.length > 0 && password.length > 0;
 	}
 
-	function handleSubmit(event) {
+	async function handleSubmit(event) {
 		event.preventDefault();
-		let login = actions.loginUser({
+		let login = await actions.loginUser({
 			email: email,
 			password: password
 		});
-		if (login) {
-			history.push("/diary");
+
+		if (typeof login === "object") {
+			setError(login.message);
 		} else {
-			console.error("error: ", login);
+			if (error !== "") setError("");
+			history.push("/diary");
 		}
 	}
 
@@ -43,6 +47,11 @@ export const Login = props => {
 				<Button block size="lg" type="submit" disabled={!validateForm()}>
 					Login
 				</Button>
+				{error !== "" && (
+					<Alert variant="danger" className="mt-4">
+						{error}
+					</Alert>
+				)}
 			</Form>
 		</div>
 	);
