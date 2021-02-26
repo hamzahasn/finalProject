@@ -14,6 +14,7 @@ import { Signup } from "./views/signup";
 import { About } from "./views/about";
 import { Diarysearch } from "./views/diarysearch";
 import { Diary } from "./views/diary";
+import Bmr from "./views/bmr";
 
 //create your first component
 const Layout = () => {
@@ -63,6 +64,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/diary">
 							<Diary />
+						</Route>
+						<Route exact path="/bmr">
+							<Bmr />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>

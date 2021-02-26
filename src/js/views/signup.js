@@ -120,7 +120,10 @@ export const Signup = () => {
 				</div>
 			</form>
 			<div className="text-center">
-				Already have an account? <a href="#">Sign in</a>
+				Already have an account?{" "}
+				<a href="#" className="signin">
+					Sign in
+				</a>
 			</div>
 		</div>
 	);
