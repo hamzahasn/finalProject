@@ -29,7 +29,7 @@ export const Login = props => {
 			setError(login.message);
 		} else {
 			if (error !== "") setError("");
-			history.push("/diary");
+			history.push("/bmr");
 		}
 	}
 
