@@ -90,18 +90,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 			clearSearch: () => setStore({ searchResult: {} }),
+
 			setDiary: (date, diaryEntry) => {
 				let store = getStore();
 
 				store.foodselected.date = date;
-				// loop diaryEntry.foods and put the foods in the correct array
-				// ie. store.foodselected.morning
+
+				//store.foodselected.morning
 				// while looping: store.foodselected[diaryentry.foods[i].time_of_day].push(diaryEntry.foods[i])
 
-				// for(let i=0;i<arr.length;i++)
-
-				setStore(store);
+				// for (let i = 0; i < arr.length; i++) {
+				// 	store.foodselected[diaryentry.foods[i].time_of_day].push(diaryEntry.foods[i]);
+				// 	setStore(store);
+				// }
+				// setStore(store);
 			},
+
 			// Use getActions to call a function within a fuction
 			signupUser: data => {
 				console.log(data);

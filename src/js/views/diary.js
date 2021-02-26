@@ -14,6 +14,7 @@ export const Diary = () => {
 	const { store, actions } = useContext(Context);
 	const [date, setDate] = useState(new Date());
 	const [total, setTotal] = useState(0);
+	const [foundSelected, setFoundSelected] = useState();
 
 	const handleSaveDiary = e => {
 		//logic for saving the day in diary
@@ -31,11 +32,18 @@ export const Diary = () => {
 			let current = date.toISOString().split("T")[0];
 			let findSelected = store.diary.find(item => item.date === current);
 			console.log("found", findSelected);
+			setFoundSelected(findSelected);
 			actions.setDiary(current, date);
 		},
 		[date]
 	);
-
+	const calculateFoundTotals = () => {
+		let x = 0;
+		for (let i = 0; i < foundSelected.length; i++) {
+			x += foundSelected[i].calories;
+		}
+		return x;
+	};
 	const calculateTotals = () => {
 		console.log("calculating totals");
 		console.log("sum foods test", store.foodselected.morning);
@@ -80,11 +88,30 @@ export const Diary = () => {
 						<Col xs={1}>Action</Col>
 					</Row>
 				</ListGroup.Item>
-				{// find the diary for the selected date
-				// check if length > 0 for this part of the day
-				// if length > 0, map the array and display info
+				{foundSelected
+					? foundSelected.foods.filter(i => i.time_of_day == "morning").map((item, index) => {
+							return (
+								<ListGroup.Item key={index}>
+									<Row>
+										<Col>{item.name}</Col>
+										<Col xs={1}>{item.quantity}</Col>
+										<Col xs={1}>{item.serving_size}</Col>
+										<Col xs={1}>{item.serving_unit}</Col>
+										<Col xs={1}>{item.calories}</Col>
 
-				store.foodselected.morning.map((item, index) => (
+										<Col xs={1}>
+											<Button onClick={e => actions.removeFoodItem(index, "morning")}>
+												<i className="fas fa-minus" />
+											</Button>
+										</Col>
+									</Row>
+								</ListGroup.Item>
+							);
+					  })
+					: null}
+				{/* // find the diary for the selected date // check if length > 0 for this part of the day // if length >
+				0, map the array and display info */}
+				{store.foodselected.morning.map((item, index) => (
 					<ListGroup.Item key={index}>
 						<Row>
 							<Col>{item.food_name}</Col>
@@ -130,6 +157,27 @@ export const Diary = () => {
 						<Col xs={1}>Action</Col>
 					</Row>
 				</ListGroup.Item>
+				{foundSelected
+					? foundSelected.foods.filter(i => i.time_of_day == "afternoon").map((item, index) => {
+							return (
+								<ListGroup.Item key={index}>
+									<Row>
+										<Col>{item.name}</Col>
+										<Col xs={1}>{item.quantity}</Col>
+										<Col xs={1}>{item.serving_size}</Col>
+										<Col xs={1}>{item.serving_unit}</Col>
+										<Col xs={1}>{item.calories}</Col>
+
+										<Col xs={1}>
+											<Button onClick={e => actions.removeFoodItem(index, "afternoon")}>
+												<i className="fas fa-minus" />
+											</Button>
+										</Col>
+									</Row>
+								</ListGroup.Item>
+							);
+					  })
+					: null}
 				{// find the diary for the selected date
 				// check if length > 0 for this part of the day
 				// if length > 0, map the array and display info
@@ -180,6 +228,27 @@ export const Diary = () => {
 						<Col xs={1}>Action</Col>
 					</Row>
 				</ListGroup.Item>
+				{foundSelected
+					? foundSelected.foods.filter(i => i.time_of_day == "night").map((item, index) => {
+							return (
+								<ListGroup.Item key={index}>
+									<Row>
+										<Col>{item.name}</Col>
+										<Col xs={1}>{item.quantity}</Col>
+										<Col xs={1}>{item.serving_size}</Col>
+										<Col xs={1}>{item.serving_unit}</Col>
+										<Col xs={1}>{item.calories}</Col>
+
+										<Col xs={1}>
+											<Button onClick={e => actions.removeFoodItem(index, "night")}>
+												<i className="fas fa-minus" />
+											</Button>
+										</Col>
+									</Row>
+								</ListGroup.Item>
+							);
+					  })
+					: null}
 				{// find the diary for the selected date
 				// check if length > 0 for this part of the day
 				// if length > 0, map the array and display info
@@ -223,7 +292,7 @@ export const Diary = () => {
 				<ListGroup.Item>
 					<Row>
 						<Col>Daily Calories:</Col>
-						<Col>{total}</Col>
+						{foundSelected ? <Col>{calculateFoundTotals()}</Col> : <Col>{total}</Col>}
 					</Row>
 				</ListGroup.Item>
 			</ListGroup>
